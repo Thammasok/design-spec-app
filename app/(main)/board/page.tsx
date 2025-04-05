@@ -15,6 +15,8 @@ import {
 } from '@xyflow/react'
 import ExampleNode from './nodes/example'
 import CustomEdge from './edges/example'
+import ApiNode from './nodes/api'
+import PostItNode from './nodes/post-it'
 
 const initialNodes = [
   {
@@ -31,12 +33,29 @@ const initialNodes = [
   {
     id: 'node-1',
     type: 'example',
-    position: { x: 200, y: 200 },
+    position: { x: 0, y: 200 },
     data: { label: 'Node 1' },
+  },
+  {
+    id: 'node-2',
+    type: 'api',
+    position: { x: 400, y: 200 },
+    data: { label: 'service' },
+  },
+  {
+    id: 'node-3',
+    type: 'postIt',
+    position: { x: 600, y: 200 },
+    data: {
+      label: 'service',
+      content: 'This is a post-it note',
+      color: 'bg-white',
+      date: '2023-10-01',
+    },
   },
 ]
 
-const nodeTypes = { example: ExampleNode }
+const nodeTypes = { example: ExampleNode, api: ApiNode, postIt: PostItNode }
 const edgeTypes = {
   'custom-edge': CustomEdge,
 }

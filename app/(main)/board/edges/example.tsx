@@ -20,7 +20,11 @@ export default function CustomEdge({ id, sourceX, sourceY, targetX, targetY }: I
 
   return (
     <>
-      <BaseEdge id={id} path={edgePath} />
+      <BaseEdge
+        id={id}
+        path={edgePath}
+        style={{ strokeWidth: 2, stroke: '#4EBC7E', strokeDasharray: '5 5' }}
+      />
       <EdgeLabelRenderer>
         <button
           style={{
