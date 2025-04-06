@@ -125,7 +125,7 @@
   }
 }
 
-.react-flow__node {
+/* .react-flow__node {
   box-shadow: var(--xy-node-boxshadow-default);
   border-radius: var(--xy-node-border-radius-default);
   background-color: var(--xy-node-background-color-default);
@@ -196,4 +196,4 @@
   border-radius: 0;
   width: 5px;
   height: 5px;
-}
+} */

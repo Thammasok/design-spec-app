@@ -90,14 +90,13 @@ const PostItNode = ({ data, isConnectable, selected }: IPostItNode) => {
       {/* Title section - editable */}
       <div className='mb-2 border-b border-gray-400 pb-1'>
         {isEditingTitle ? (
-          <input
+          <textarea
             ref={titleRef}
-            type='text'
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             onBlur={handleTitleBlur}
             onKeyDown={(e) => handleKeyDown(e, 'title')}
-            className='w-full bg-transparent font-bold text-gray-800 focus:outline-none'
+            className='w-full h-auto bg-transparent font-bold text-gray-800 focus:outline-none'
             placeholder='Add title...'
           />
         ) : (

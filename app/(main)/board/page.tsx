@@ -17,6 +17,11 @@ import ExampleNode from './nodes/example'
 import CustomEdge from './edges/example'
 import ApiNode from './nodes/api'
 import PostItNode from './nodes/post-it'
+import PostIt2Node from './nodes/node2'
+import DBTableNode from './nodes/db-table'
+import Node3 from './nodes/node3'
+import Node1 from './nodes/node1'
+import Node2 from './nodes/node2'
 
 const initialNodes = [
   {
@@ -44,8 +49,19 @@ const initialNodes = [
   },
   {
     id: 'node-3',
-    type: 'postIt',
+    type: 'node3',
     position: { x: 600, y: 200 },
+    data: {
+      label: 'service',
+      content: 'This is a post-it note',
+      color: 'bg-white',
+      date: '2023-10-01',
+    },
+  },
+  {
+    id: 'node-4',
+    type: 'node1',
+    position: { x: 600, y: 600 },
     data: {
       label: 'service',
       content: 'This is a post-it note',
@@ -55,7 +71,15 @@ const initialNodes = [
   },
 ]
 
-const nodeTypes = { example: ExampleNode, api: ApiNode, postIt: PostItNode }
+const nodeTypes = {
+  example: ExampleNode,
+  api: ApiNode,
+  postIt: PostItNode,
+  dbTable: DBTableNode,
+  node1: Node1,
+  node2: Node2,
+  node3: Node3,
+}
 const edgeTypes = {
   'custom-edge': CustomEdge,
 }
