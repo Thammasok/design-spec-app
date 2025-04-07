@@ -1,14 +1,17 @@
+'use client'
+
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogOverlay,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
+// import {
+//   Dialog,
+//   DialogContent,
+//   DialogDescription,
+//   DialogFooter,
+//   DialogHeader,
+//   DialogOverlay,
+//   DialogTitle,
+//   DialogTrigger,
+// } from '@/components/ui/dialog'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,15 +19,16 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { cn } from '@/lib/utils'
 import { ChevronDownIcon, CodeXmlIcon } from 'lucide-react'
@@ -132,11 +136,156 @@ export default function Node3({}: INode3) {
         </div>
       </div>
 
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <SheetContent className='sm:min-w-[800px] xs:max-w-full'>
+          <SheetHeader>
+            <SheetTitle>Rest APIs Name</SheetTitle>
+            <SheetDescription>
+              Make changes to your profile here. Click save when you're done.
+            </SheetDescription>
+          </SheetHeader>
+          <div className='flex flex-col gap-4 p-4 pt-0'>
+            <Tabs defaultValue='service' orientation='vertical' className='w-full'>
+              <TabsList className='@4xl/main:flex grid w-full grid-cols-5'>
+                <TabsTrigger value='basic'>Basic</TabsTrigger>
+                <TabsTrigger value='service'>Service</TabsTrigger>
+                <TabsTrigger value='functions' className='gap-1'>
+                  Functions{' '}
+                  <Badge
+                    variant='secondary'
+                    className='flex h-5 w-5 items-center justify-center rounded-full bg-muted-foreground/30'
+                  >
+                    3
+                  </Badge>
+                </TabsTrigger>
+                <TabsTrigger value='settings' className='gap-1'>
+                  Settings{' '}
+                  <Badge
+                    variant='secondary'
+                    className='flex h-5 w-5 items-center justify-center rounded-full bg-muted-foreground/30'
+                  >
+                    2
+                  </Badge>
+                </TabsTrigger>
+                <TabsTrigger value='focus-documents'>Focus Documents</TabsTrigger>
+              </TabsList>
+
+              <TabsContent
+                value='basic'
+                className='relative flex flex-col gap-4 mt-4 overflow-auto'
+              >
+                Name
+              </TabsContent>
+              <TabsContent
+                value='service'
+                className='relative flex flex-col gap-4 mt-4 overflow-auto'
+              >
+                {/* URL */}
+                <div className='flex items-center justify-between gap-1 border border-gray-200 dark:border-gray-200 rounded-lg'>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <div className='flex items-center justify-between cursor-pointer'>
+                        <div
+                          className={`${method.textColor} text-left text-sm font-semibold py-2 pl-4 pr-0 w-[88px]`}
+                        >
+                          {method.label}
+                        </div>
+                        <ChevronDownIcon size={16} className='text-gray-600' />
+                      </div>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align='start'>
+                      {methods.map((methodItem) => (
+                        <DropdownMenuItem
+                          key={methodItem.value}
+                          className={cn(
+                            `${methodItem.textColor} font-semibold text-sm cursor-pointer`,
+                            methodItem.value === method.value && 'bg-gray-100 dark:bg-gray-100',
+                          )}
+                          onClick={() => handleMethodChange(methodItem)}
+                        >
+                          {methodItem.label}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+
+                  <Separator orientation='vertical' className='!h-6 w-2' />
+                  <Input
+                    type='text'
+                    className='border-none shadow-none focus-visible:ring-0 focus-visible:ring-transparent'
+                    placeholder='Enter URL or paste text'
+                  />
+                </div>
+
+                {/* Requests */}
+                <div>
+                  <Tabs defaultValue='params'>
+                    <TabsList className='grid w-full grid-cols-5'>
+                      <TabsTrigger value='params'>Params</TabsTrigger>
+                      <TabsTrigger value='authorization'>Authorization</TabsTrigger>
+                      <TabsTrigger value='headers'>Headers</TabsTrigger>
+                      <TabsTrigger value='body'>Body</TabsTrigger>
+                      <TabsTrigger value='scripts'>Scripts</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value='params'>
+                      <div className='flex flex-col gap-2'>
+                        <div className='text-sm font-bold'>Query Params</div>
+                      </div>
+                    </TabsContent>
+                    <TabsContent value='authorization'>Change your authorization here.</TabsContent>
+                    <TabsContent value='headers'>Change your headers here.</TabsContent>
+                    <TabsContent value='body'>Change your body here.</TabsContent>
+                    <TabsContent value='scripts'>
+                      <div className='grid grid-cols-4 mt-4'>
+                        <div className='flex flex-col gap-2'>
+                          <div className='text-sm font-bold'>Pre-request Script</div>
+                          <div className='text-sm text-gray-600'>
+                            This is the pre-request script. It runs before the request is sent.
+                          </div>
+                          <div className='text-sm font-bold'>Tests</div>
+                          <div className='text-sm text-gray-600'>
+                            This is the test script. It runs after the request is sent. It can be
+                            used to test the response.
+                          </div>
+                        </div>
+                        <div className='col-span-3'>
+                          <div className='flex items-center gap-2'>
+                            <textarea
+                              className='w-full h-full p-2 border border-gray-200 rounded-lg'
+                              rows={10}
+                            />
+                          </div>
+                          <div className='flex items-center gap-2'>
+                            <textarea
+                              className='w-full h-full p-2 border border-gray-200 rounded-lg'
+                              rows={10}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </TabsContent>
+                  </Tabs>
+                </div>
+              </TabsContent>
+
+              <TabsContent value='functions' className='flex flex-col'>
+                <div className='aspect-video w-full flex-1 rounded-lg border border-dashed'>
+                  functions
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+          <SheetFooter>
+            <SheetClose asChild>
+              <Button type='submit'>Save changes</Button>
+            </SheetClose>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+      {/* <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogOverlay className='fixed inset-0 z-20 !bg-white' />
         <DialogContent className='sm:max-w-4xl'>
           <div className='flex flex-col gap-4'>
-            {/* URL */}
             <div className='flex items-center justify-between gap-1 border border-gray-200 dark:border-gray-200 rounded-lg'>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -173,7 +322,6 @@ export default function Node3({}: INode3) {
               />
             </div>
 
-            {/* Requests */}
             <div>
               <Tabs defaultValue='params'>
                 <TabsList>
@@ -199,7 +347,7 @@ export default function Node3({}: INode3) {
             <Button type='submit'>Save changes</Button>
           </DialogFooter>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
     </>
   )
 }
