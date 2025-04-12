@@ -1,6 +1,7 @@
 'use client'
 
 import '@xyflow/react/dist/style.css'
+import '@/assets/styles/xy-theme.css'
 import { useCallback, useState } from 'react'
 import {
   addEdge,
@@ -10,79 +11,16 @@ import {
   Connection,
   Controls,
   EdgeChange,
+  MiniMap,
+  Node,
   NodeChange,
   ReactFlow,
 } from '@xyflow/react'
-import ExampleNode from './nodes/example'
-import CustomEdge from './edges/example'
-import ApiNode from './nodes/api'
-import PostItNode from './nodes/post-it'
-import PostIt2Node from './nodes/node2'
-import DBTableNode from './nodes/db-table'
-import Node3 from './nodes/node3'
-import Node1 from './nodes/node1'
-import Node2 from './nodes/node2'
+import nodeTypes from './initial/nodes'
+import edgeTypes from './initial/edges'
+import initialNodes from './initial/initial-node'
 
-const initialNodes = [
-  {
-    id: '1',
-    data: { label: 'Hello' },
-    position: { x: 0, y: 0 },
-    type: 'input',
-  },
-  {
-    id: '2',
-    data: { label: 'World' },
-    position: { x: 100, y: 100 },
-  },
-  {
-    id: 'node-1',
-    type: 'example',
-    position: { x: 0, y: 200 },
-    data: { label: 'Node 1' },
-  },
-  {
-    id: 'node-2',
-    type: 'api',
-    position: { x: 400, y: 200 },
-    data: { label: 'service' },
-  },
-  {
-    id: 'node-3',
-    type: 'node3',
-    position: { x: 600, y: 200 },
-    data: {
-      label: 'service',
-      content: 'This is a post-it note',
-      color: 'bg-white',
-      date: '2023-10-01',
-    },
-  },
-  {
-    id: 'node-4',
-    type: 'node1',
-    position: { x: 600, y: 600 },
-    data: {
-      label: 'service',
-      content: 'This is a post-it note',
-      color: 'bg-white',
-      date: '2023-10-01',
-    },
-  },
-]
-
-const nodeTypes = {
-  example: ExampleNode,
-  api: ApiNode,
-  postIt: PostItNode,
-  dbTable: DBTableNode,
-  node1: Node1,
-  node2: Node2,
-  node3: Node3,
-}
-const edgeTypes = {
-  'custom-edge': CustomEdge,
-}
+const nodeClassName = (node: Node) => node.type
 
 export default function Page() {
   const [nodes, setNodes] = useState(initialNodes)
@@ -127,6 +65,7 @@ export default function Page() {
         edgeTypes={edgeTypes}
         fitView
       >
+        <MiniMap zoomable pannable nodeClassName={nodeClassName as any} />
         <Background />
         <Controls />
       </ReactFlow>
