@@ -151,12 +151,12 @@ input[type='number']::-webkit-inner-spin-button {
 
 .react-flow__handle-bottom.custom-handle {
   bottom: -5px;
-  transform: none;
+  /* transform: none; */
 }
 
 .react-flow__handle-top.custom-handle {
   top: -5px;
-  transform: none;
+  /* transform: none; */
 }
 
 .react-flow__handle-left.custom-handle {
@@ -164,6 +164,13 @@ input[type='number']::-webkit-inner-spin-button {
   width: 4px;
   left: -3px;
 }
+
+.react-flow__handle-right.custom-handle {
+  height: 8px;
+  width: 4px;
+  right: -3px;
+}
+
 
 /* Minimap */
 

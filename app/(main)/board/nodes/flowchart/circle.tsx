@@ -14,6 +14,7 @@ interface ICircleProps {
 }
 
 export default memo(({ id }: ICircleProps) => {
+  const [selected, setSelected] = React.useState(false)
   const [size, setSize] = React.useState({ width: 48, height: 48 })
   const [font, setFont] = React.useState({
     fontType: 'auto', // 'auto' | 'custom'
@@ -68,8 +69,16 @@ export default memo(({ id }: ICircleProps) => {
 
   return (
     <div>
-      <NodeResizer minHeight={48} minWidth={48} onResize={onResize} keepAspectRatio />
+      <NodeResizer
+        minHeight={48}
+        minWidth={48}
+        isVisible={selected}
+        onResize={onResize}
+        keepAspectRatio
+      />
       <div
+        data-id={id}
+        data-type='circle'
         className='min-w-12 min-h-12 text-center rounded-[100%] flex justify-center items-center'
         style={{
           fontFamily: font.fontFamily,
@@ -86,10 +95,15 @@ export default memo(({ id }: ICircleProps) => {
           borderStyle: border.style,
           backgroundColor: background.color,
         }}
+        onClick={() => setSelected(true)}
       >
         {label || 'no node connected'}
       </div>
+
+      <Handle type='target' position={Position.Top} className='custom-handle' />
       <Handle type='target' position={Position.Left} className='custom-handle' />
+      <Handle type='target' position={Position.Right} className='custom-handle' />
+      <Handle type='target' position={Position.Bottom} className='custom-handle' />
     </div>
   )
 })
