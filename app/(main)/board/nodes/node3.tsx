@@ -30,6 +30,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import * as CTab from '@/components/custom/tabs'
 import { cn } from '@/lib/utils'
 import { ChevronDownIcon, CodeXmlIcon } from 'lucide-react'
 import Image from 'next/image'
@@ -181,7 +182,7 @@ export default function Node3({}: INode3) {
                 className='relative flex flex-col gap-4 mt-4 overflow-auto'
               >
                 {/* URL */}
-                <div className='flex items-center justify-between gap-1 border border-gray-200 dark:border-gray-200 rounded-lg'>
+                <div className='flex items-center justify-between gap-1 border bg-muted border-gray-200 dark:border-gray-200 rounded-lg'>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <div className='flex items-center justify-between cursor-pointer'>
@@ -219,52 +220,34 @@ export default function Node3({}: INode3) {
 
                 {/* Requests */}
                 <div>
-                  <Tabs defaultValue='params'>
-                    <TabsList className='grid w-full grid-cols-5'>
-                      <TabsTrigger value='params'>Params</TabsTrigger>
-                      <TabsTrigger value='authorization'>Authorization</TabsTrigger>
-                      <TabsTrigger value='headers'>Headers</TabsTrigger>
-                      <TabsTrigger value='body'>Body</TabsTrigger>
-                      <TabsTrigger value='scripts'>Scripts</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value='params'>
+                  <CTab.Tabs defaultValue='params'>
+                    <CTab.TabsList className='flex gap-2'>
+                      <CTab.TabsTrigger value='params'>Params</CTab.TabsTrigger>
+                      <CTab.TabsTrigger value='body'>Body</CTab.TabsTrigger>
+                      <CTab.TabsTrigger value='headers'>Headers</CTab.TabsTrigger>
+                      <CTab.TabsTrigger value='authorization'>Authorization</CTab.TabsTrigger>
+                      <CTab.TabsTrigger value='pre-requests-scripts'>
+                        Pre-requests Scripts
+                      </CTab.TabsTrigger>
+                      <CTab.TabsTrigger value='tests'>Tests</CTab.TabsTrigger>
+                    </CTab.TabsList>
+                    <CTab.TabsContent value='params'>
                       <div className='flex flex-col gap-2'>
                         <div className='text-sm font-bold'>Query Params</div>
                       </div>
-                    </TabsContent>
-                    <TabsContent value='authorization'>Change your authorization here.</TabsContent>
-                    <TabsContent value='headers'>Change your headers here.</TabsContent>
-                    <TabsContent value='body'>Change your body here.</TabsContent>
-                    <TabsContent value='scripts'>
-                      <div className='grid grid-cols-4 mt-4'>
-                        <div className='flex flex-col gap-2'>
-                          <div className='text-sm font-bold'>Pre-request Script</div>
-                          <div className='text-sm text-gray-600'>
-                            This is the pre-request script. It runs before the request is sent.
-                          </div>
-                          <div className='text-sm font-bold'>Tests</div>
-                          <div className='text-sm text-gray-600'>
-                            This is the test script. It runs after the request is sent. It can be
-                            used to test the response.
-                          </div>
-                        </div>
-                        <div className='col-span-3'>
-                          <div className='flex items-center gap-2'>
-                            <textarea
-                              className='w-full h-full p-2 border border-gray-200 rounded-lg'
-                              rows={10}
-                            />
-                          </div>
-                          <div className='flex items-center gap-2'>
-                            <textarea
-                              className='w-full h-full p-2 border border-gray-200 rounded-lg'
-                              rows={10}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </TabsContent>
-                  </Tabs>
+                    </CTab.TabsContent>
+                    <CTab.TabsContent value='authorization'>
+                      Change your authorization here.
+                    </CTab.TabsContent>
+                    <CTab.TabsContent value='headers'>Change your headers here.</CTab.TabsContent>
+                    <CTab.TabsContent value='body'>Change your body here.</CTab.TabsContent>
+                    <CTab.TabsContent value='scripts'>
+                      <textarea
+                        className='w-full h-full p-2 border border-gray-200 rounded-lg'
+                        rows={10}
+                      />
+                    </CTab.TabsContent>
+                  </CTab.Tabs>
                 </div>
               </TabsContent>
 
