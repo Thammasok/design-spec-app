@@ -102,8 +102,8 @@ export default memo(({ id }: ICircleProps) => {
 
       <Handle type='target' position={Position.Top} className='custom-handle' />
       <Handle type='target' position={Position.Left} className='custom-handle' />
-      <Handle type='target' position={Position.Right} className='custom-handle' />
-      <Handle type='target' position={Position.Bottom} className='custom-handle' />
+      <Handle type='source' position={Position.Right} className='custom-handle' />
+      <Handle type='source' position={Position.Bottom} className='custom-handle' />
     </div>
   )
 })
