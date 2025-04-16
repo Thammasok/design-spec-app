@@ -10,6 +10,7 @@ import {
   Background,
   Connection,
   Controls,
+  Edge,
   EdgeChange,
   MiniMap,
   Node,
@@ -19,12 +20,14 @@ import {
 import nodeTypes from './initial/nodes'
 import edgeTypes from './initial/edges'
 import initialNodes from './initial/initial-node'
+import initialEdges from './initial/intial-edge'
+import { DevTools } from '@/components/devtools'
 
 const nodeClassName = (node: Node) => node.type
 
 export default function Page() {
-  const [nodes, setNodes] = useState(initialNodes)
-  const [edges, setEdges] = useState([])
+  const [nodes, setNodes] = useState<any[]>(initialNodes)
+  const [edges, setEdges] = useState<any[]>(initialEdges)
 
   const onNodesChange = useCallback(
     (
@@ -63,11 +66,13 @@ export default function Page() {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
+        nodeClickDistance={5}
         fitView
       >
         <MiniMap zoomable pannable nodeClassName={nodeClassName as any} />
         <Background />
         <Controls />
+        <DevTools position='top-left' />
       </ReactFlow>
     </div>
   )

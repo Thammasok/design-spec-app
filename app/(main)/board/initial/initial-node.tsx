@@ -1,19 +1,25 @@
-const initialNodes = [
+const initialNodes: any[] = [
   {
     id: '1',
     data: { label: 'Hello' },
+    position: { x: 0, y: -100 },
+  },
+  {
+    id: 'node-placeholder',
+    data: {},
     position: { x: 0, y: 0 },
-    type: 'input',
+    type: 'placeholder',
   },
   {
     id: '2',
     data: { label: 'World' },
-    position: { x: 100, y: 100 },
+    position: { x: 300, y: -100 },
+    type: 'nodeWithHandle',
   },
   {
     id: 'node-1',
     type: 'example',
-    position: { x: 0, y: 200 },
+    position: { x: -200, y: 200 },
     data: { label: 'Node 1' },
   },
   {
