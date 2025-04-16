@@ -133,7 +133,7 @@ input[type='number']::-webkit-inner-spin-button {
 /* Custom Handles */
 
 .react-flow__handle.custom-handle {
-  background-color: var(--color-gray-500);
+  background-color: var(--color-blue-500);
   border-radius: 1px;
   width: 8px;
   height: 4px;
@@ -146,7 +146,7 @@ input[type='number']::-webkit-inner-spin-button {
 .react-flow__handle.custom-handle.connectionindicator:focus,
 .react-flow__handle.custom-handle.connectingfrom,
 .react-flow__handle.custom-handle.connectingto {
-  background-color: var(--xy-theme-edge-hover);
+  background-color: var(--color-blue-600);
 }
 
 .react-flow__handle-bottom.custom-handle {
@@ -173,7 +173,6 @@ input[type='number']::-webkit-inner-spin-button {
 
 
 /* Minimap */
-
 .react-flow__minimap .group {
   fill-opacity: 0.4;
 }

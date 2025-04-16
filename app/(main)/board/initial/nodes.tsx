@@ -7,6 +7,8 @@ import Node3 from '../nodes/node3'
 import Node1 from '../nodes/node1'
 import Node2 from '../nodes/node2'
 import circle from '../nodes/flowchart/circle'
+import NodePlaceholder from '../nodes/node-placeholder'
+import NodeWithHandle from '../nodes/node-with-handle'
 
 const nodeTypes = {
   example: ExampleNode,
@@ -17,6 +19,8 @@ const nodeTypes = {
   node2: Node2,
   node3: Node3,
   circle: circle,
+  placeholder: NodePlaceholder,
+  nodeWithHandle: NodeWithHandle,
 }
 
 export default nodeTypes

@@ -9,12 +9,11 @@ import {
   ResizeParams,
 } from '@xyflow/react'
 
-interface ICircleProps {
+interface ICircleProps extends Node {
   id: string
 }
 
-export default memo(({ id }: ICircleProps) => {
-  const [selected, setSelected] = React.useState(false)
+export default memo(({ id, selected, focusable }: ICircleProps) => {
   const [size, setSize] = React.useState({ width: 48, height: 48 })
   const [font, setFont] = React.useState({
     fontType: 'auto', // 'auto' | 'custom'
@@ -67,8 +66,10 @@ export default memo(({ id }: ICircleProps) => {
     }
   }
 
+  console.log('circle', id, selected, focusable)
+
   return (
-    <div>
+    <div className='group'>
       <NodeResizer
         minHeight={48}
         minWidth={48}
@@ -95,15 +96,16 @@ export default memo(({ id }: ICircleProps) => {
           borderStyle: border.style,
           backgroundColor: background.color,
         }}
-        onClick={() => setSelected(true)}
       >
         {label || 'no node connected'}
       </div>
 
-      <Handle type='target' position={Position.Top} className='custom-handle' />
-      <Handle type='target' position={Position.Left} className='custom-handle' />
-      <Handle type='source' position={Position.Right} className='custom-handle' />
-      <Handle type='source' position={Position.Bottom} className='custom-handle' />
+      <div className='group-hover:opacity-100 opacity-0 transition-opacity duration-300'>
+        <Handle type='target' position={Position.Top} />
+        <Handle type='target' position={Position.Left} />
+        <Handle type='source' position={Position.Right} />
+        <Handle type='source' position={Position.Bottom} />
+      </div>
     </div>
   )
 })
